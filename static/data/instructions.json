@@ -1,0 +1,2321 @@
+{
+    "__comment__": [
+        "This list contains the instructions of the 6502 micro processor.",
+        "It may be inaccurate or incomplete. If you find any mistakes, please contact me: thomas@syntaxerror.at",
+        "(created by SyntaxError404, GitHub: Synt4xErr0r4)",
+        "sources:",
+        "- https://wiki.nesdev.org/w/index.php?title=CPU_addressing_modes",
+        "- https://www.nesdev.com/6502_cpu.txt",
+        "- http://www.oxyron.de/html/opcodes02.html",
+        "- https://www.masswerk.at/nowgobang/2021/6502-illegal-opcodes",
+        "- https://wiki.nesdev.org/w/index.php?title=CPU_unofficial_opcodes",
+        "version 1, 07.02.2022"
+    ],
+
+    "data": [
+        {
+            "hex": "00",
+            "mnemonic": "BRK",
+            "addrmode": "imp",
+            "cycles": 7,
+            "operation": "[S--]=PC,P; PC=[$FFFE]",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "01",
+            "mnemonic": "ORA",
+            "addrmode": "izxr",
+            "cycles": 6,
+            "operation": "A=A|#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "02",
+            "mnemonic": "KIL",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "crash",
+            "flags": "--------",
+            "stability": "crash"
+        },
+        {
+            "hex": "03",
+            "mnemonic": "SLO",
+            "addrmode": "izxm",
+            "cycles": 8,
+            "operation": "#=#<<1; A=A|#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "04",
+            "mnemonic": "NOP",
+            "addrmode": "zpgr",
+            "cycles": 4,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": "05",
+            "mnemonic": "ORA",
+            "addrmode": "zpgr",
+            "cycles": 4,
+            "operation": "A=A|#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "06",
+            "mnemonic": "ASL",
+            "addrmode": "zpgm",
+            "cycles": 5,
+            "operation": "#=#<<1",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": "07",
+            "mnemonic": "SLO",
+            "addrmode": "zpgm",
+            "cycles": 5,
+            "operation": "#=#<<1; A=A|#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "08",
+            "mnemonic": "PHP",
+            "addrmode": "imp",
+            "cycles": 3,
+            "operation": "[S--]=P",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "09",
+            "mnemonic": "ORA",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "A=A|#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "0A",
+            "mnemonic": "ASL",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "#=#<<1",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": "0B",
+            "mnemonic": "ANC",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "A=A&#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "0C",
+            "mnemonic": "NOP",
+            "addrmode": "absr",
+            "cycles": 4,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "0D",
+            "mnemonic": "ORA",
+            "addrmode": "absr",
+            "cycles": 4,
+            "operation": "A=A|#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "0E",
+            "mnemonic": "ASL",
+            "addrmode": "absm",
+            "cycles": 6,
+            "operation": "#=#<<1",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": "0F",
+            "mnemonic": "SLO",
+            "addrmode": "absm",
+            "cycles": 6,
+            "operation": "#=#<<1; A=A|#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 10,
+            "mnemonic": "BPL",
+            "addrmode": "rel",
+            "cycles": "2-4",
+            "operation": "if N=0: PC=PC+#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": 11,
+            "mnemonic": "ORA",
+            "addrmode": "izyr",
+            "cycles": "5-6",
+            "operation": "A=A|#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": 12,
+            "mnemonic": "KIL",
+            "addrmode": "rel",
+            "cycles": "2-4",
+            "operation": "crash",
+            "flags": "--------",
+            "stability": "crash"
+        },
+        {
+            "hex": 13,
+            "mnemonic": "SLO",
+            "addrmode": "izym",
+            "cycles": 8,
+            "operation": "#=#<<1; A=A|#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 14,
+            "mnemonic": "NOP",
+            "addrmode": "zpxr",
+            "cycles": 4,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": 15,
+            "mnemonic": "ORA",
+            "addrmode": "zpxr",
+            "cycles": 4,
+            "operation": "A=A|#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": 16,
+            "mnemonic": "ASL",
+            "addrmode": "zpxm",
+            "cycles": 6,
+            "operation": "#=#<<1",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": 17,
+            "mnemonic": "SLO",
+            "addrmode": "zpxm",
+            "cycles": 6,
+            "operation": "#=#<<1; A=A|#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 18,
+            "mnemonic": "CLC",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "C=0",
+            "flags": "-------0",
+            "stability": ""
+        },
+        {
+            "hex": 19,
+            "mnemonic": "ORA",
+            "addrmode": "abyr",
+            "cycles": "4-5",
+            "operation": "A=A|#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "1A",
+            "mnemonic": "NOP",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": "1B",
+            "mnemonic": "SLO",
+            "addrmode": "abym",
+            "cycles": 7,
+            "operation": "#=#<<1; A=A|#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "1C",
+            "mnemonic": "NOP",
+            "addrmode": "abxr",
+            "cycles": "4-5",
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": "1D",
+            "mnemonic": "ORA",
+            "addrmode": "abxr",
+            "cycles": "4-5",
+            "operation": "A=A|#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "1E",
+            "mnemonic": "ASL",
+            "addrmode": "abxm",
+            "cycles": 7,
+            "operation": "#=#<<1",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": "1F",
+            "mnemonic": "SLO",
+            "addrmode": "abxm",
+            "cycles": 7,
+            "operation": "#=#<<1; A=A|#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 20,
+            "mnemonic": "JSR",
+            "addrmode": "abs",
+            "cycles": 6,
+            "operation": "[S--]=PC; PC=#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": 21,
+            "mnemonic": "AND",
+            "addrmode": "izxr",
+            "cycles": 6,
+            "operation": "A=A&#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": 22,
+            "mnemonic": "KIL",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "crash",
+            "flags": "--------",
+            "stability": "crash"
+        },
+        {
+            "hex": 23,
+            "mnemonic": "RLA",
+            "addrmode": "izxm",
+            "cycles": 8,
+            "operation": "#=#<<1+C; A=A&#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 24,
+            "mnemonic": "BIT",
+            "addrmode": "zpgr",
+            "cycles": 4,
+            "operation": "N=b7; V=b6; Z=A&#",
+            "flags": "**----*-",
+            "stability": ""
+        },
+        {
+            "hex": 25,
+            "mnemonic": "AND",
+            "addrmode": "zpgr",
+            "cycles": 4,
+            "operation": "A=A&#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": 26,
+            "mnemonic": "ROL",
+            "addrmode": "zpgm",
+            "cycles": 5,
+            "operation": "#=#<<1+C",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": 27,
+            "mnemonic": "RLA",
+            "addrmode": "zpgm",
+            "cycles": 5,
+            "operation": "#=#<<1+C; A=A&#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 28,
+            "mnemonic": "PLP",
+            "addrmode": "imp",
+            "cycles": 4,
+            "operation": "P=[++S]",
+            "flags": "**--****",
+            "stability": ""
+        },
+        {
+            "hex": 29,
+            "mnemonic": "AND",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "A=A&#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "2A",
+            "mnemonic": "ROL",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "#=#<<1+C",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": "2B",
+            "mnemonic": "ANC",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "A=A&#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "2C",
+            "mnemonic": "BIT",
+            "addrmode": "absr",
+            "cycles": 4,
+            "operation": "N=b7; V=b6; Z=A&#",
+            "flags": "**----*-",
+            "stability": ""
+        },
+        {
+            "hex": "2D",
+            "mnemonic": "AND",
+            "addrmode": "absr",
+            "cycles": 4,
+            "operation": "A=A&#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "2E",
+            "mnemonic": "ROL",
+            "addrmode": "absm",
+            "cycles": 6,
+            "operation": "#=#<<1+C",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": "2F",
+            "mnemonic": "RLA",
+            "addrmode": "absm",
+            "cycles": 6,
+            "operation": "#=#<<1+C; A=A&#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 30,
+            "mnemonic": "BMI",
+            "addrmode": "rel",
+            "cycles": "2-4",
+            "operation": "if N=1: PC=PC+#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": 31,
+            "mnemonic": "AND",
+            "addrmode": "izyr",
+            "cycles": "5-6",
+            "operation": "A=A&#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": 32,
+            "mnemonic": "KIL",
+            "addrmode": "rel",
+            "cycles": "2-4",
+            "operation": "crash",
+            "flags": "--------",
+            "stability": "crash"
+        },
+        {
+            "hex": 33,
+            "mnemonic": "RLA",
+            "addrmode": "izym",
+            "cycles": 8,
+            "operation": "#=#<<1+C; A=A&#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 34,
+            "mnemonic": "NOP",
+            "addrmode": "zpxr",
+            "cycles": 4,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": 35,
+            "mnemonic": "AND",
+            "addrmode": "zpxr",
+            "cycles": 4,
+            "operation": "A=A&#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": 36,
+            "mnemonic": "ROL",
+            "addrmode": "zpxm",
+            "cycles": 6,
+            "operation": "#=#<<1+C",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": 37,
+            "mnemonic": "RLA",
+            "addrmode": "zpxm",
+            "cycles": 6,
+            "operation": "#=#<<1+C; A=A&#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 38,
+            "mnemonic": "SEC",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "C=1",
+            "flags": "-------1",
+            "stability": ""
+        },
+        {
+            "hex": 39,
+            "mnemonic": "AND",
+            "addrmode": "abyr",
+            "cycles": "4-5",
+            "operation": "A=A&#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "3A",
+            "mnemonic": "NOP",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": "3B",
+            "mnemonic": "RLA",
+            "addrmode": "abym",
+            "cycles": 7,
+            "operation": "#=#<<1+C; A=A&#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "3C",
+            "mnemonic": "NOP",
+            "addrmode": "abxr",
+            "cycles": "4-5",
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": "3D",
+            "mnemonic": "AND",
+            "addrmode": "abxr",
+            "cycles": "4-5",
+            "operation": "A=A&#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "3E",
+            "mnemonic": "ROL",
+            "addrmode": "abxm",
+            "cycles": 7,
+            "operation": "#=#<<1+C",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": "3F",
+            "mnemonic": "RLA",
+            "addrmode": "abxm",
+            "cycles": 7,
+            "operation": "#=#<<1+C; A=A&#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 40,
+            "mnemonic": "RTI",
+            "addrmode": "imp",
+            "cycles": 6,
+            "operation": "P,PC=[++S]",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": 41,
+            "mnemonic": "EOR",
+            "addrmode": "izxr",
+            "cycles": 6,
+            "operation": "A=A^#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": 42,
+            "mnemonic": "KIL",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "crash",
+            "flags": "--------",
+            "stability": "crash"
+        },
+        {
+            "hex": 43,
+            "mnemonic": "SRE",
+            "addrmode": "izxm",
+            "cycles": 8,
+            "operation": "#=#>>1; A=A^#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 44,
+            "mnemonic": "NOP",
+            "addrmode": "zpgr",
+            "cycles": 4,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": 45,
+            "mnemonic": "EOR",
+            "addrmode": "zpgr",
+            "cycles": 4,
+            "operation": "A=A^#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": 46,
+            "mnemonic": "LSR",
+            "addrmode": "zpgm",
+            "cycles": 5,
+            "operation": "#=#>>1",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": 47,
+            "mnemonic": "SRE",
+            "addrmode": "zpgm",
+            "cycles": 5,
+            "operation": "#=#>>1; A=A^#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 48,
+            "mnemonic": "PHA",
+            "addrmode": "imp",
+            "cycles": 3,
+            "operation": "[S--]=A",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": 49,
+            "mnemonic": "EOR",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "A=A^#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "4A",
+            "mnemonic": "LSR",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "#=#>>1",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": "4B",
+            "mnemonic": "ALR",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "A=(A&#)>>1",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "4C",
+            "mnemonic": "JMP",
+            "addrmode": "abs",
+            "cycles": 3,
+            "operation": "PC=#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "4D",
+            "mnemonic": "EOR",
+            "addrmode": "absr",
+            "cycles": 4,
+            "operation": "A=A^#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "4E",
+            "mnemonic": "LSR",
+            "addrmode": "absm",
+            "cycles": 6,
+            "operation": "#=#>>1",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": "4F",
+            "mnemonic": "SRE",
+            "addrmode": "absm",
+            "cycles": 6,
+            "operation": "#=#>>1; A=A^#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 50,
+            "mnemonic": "BVC",
+            "addrmode": "rel",
+            "cycles": "2-4",
+            "operation": "if V=0: PC=PC+#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": 51,
+            "mnemonic": "EOR",
+            "addrmode": "izyr",
+            "cycles": "5-6",
+            "operation": "A=A^#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": 52,
+            "mnemonic": "KIL",
+            "addrmode": "rel",
+            "cycles": "2-4",
+            "operation": "crash",
+            "flags": "--------",
+            "stability": "crash"
+        },
+        {
+            "hex": 53,
+            "mnemonic": "SRE",
+            "addrmode": "izym",
+            "cycles": 8,
+            "operation": "#=#>>1; A=A^#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 54,
+            "mnemonic": "NOP",
+            "addrmode": "zpxr",
+            "cycles": 4,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": 55,
+            "mnemonic": "EOR",
+            "addrmode": "zpxr",
+            "cycles": 4,
+            "operation": "A=A^#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": 56,
+            "mnemonic": "LSR",
+            "addrmode": "zpxm",
+            "cycles": 6,
+            "operation": "#=#>>1",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": 57,
+            "mnemonic": "SRE",
+            "addrmode": "zpxm",
+            "cycles": 6,
+            "operation": "#=#>>1; A=A^#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 58,
+            "mnemonic": "CLI",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "I=0",
+            "flags": "-----0--",
+            "stability": ""
+        },
+        {
+            "hex": 59,
+            "mnemonic": "EOR",
+            "addrmode": "abyr",
+            "cycles": "4-5",
+            "operation": "A=A^#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "5A",
+            "mnemonic": "NOP",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": "5B",
+            "mnemonic": "SRE",
+            "addrmode": "abym",
+            "cycles": 7,
+            "operation": "#=#>>1; A=A^#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "5C",
+            "mnemonic": "NOP",
+            "addrmode": "abxr",
+            "cycles": "4-5",
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": "5D",
+            "mnemonic": "EOR",
+            "addrmode": "abxr",
+            "cycles": "4-5",
+            "operation": "A=A^#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "5E",
+            "mnemonic": "LSR",
+            "addrmode": "abxm",
+            "cycles": 7,
+            "operation": "#=#>>1",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": "5F",
+            "mnemonic": "SRE",
+            "addrmode": "abxm",
+            "cycles": 7,
+            "operation": "#=#>>1; A=A^#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 60,
+            "mnemonic": "RTS",
+            "addrmode": "imp",
+            "cycles": 5,
+            "operation": "PC=[++S]",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": 61,
+            "mnemonic": "ADC",
+            "addrmode": "izxr",
+            "cycles": 6,
+            "operation": "A=A+#",
+            "flags": "**----**",
+            "stability": ""
+        },
+        {
+            "hex": 62,
+            "mnemonic": "KIL",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "crash",
+            "flags": "--------",
+            "stability": "crash"
+        },
+        {
+            "hex": 63,
+            "mnemonic": "RRA",
+            "addrmode": "izxm",
+            "cycles": 8,
+            "operation": "#=#>>1+(C<<7); A=A+#",
+            "flags": "**----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 64,
+            "mnemonic": "NOP",
+            "addrmode": "zpgr",
+            "cycles": 4,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": 65,
+            "mnemonic": "ADC",
+            "addrmode": "zpgr",
+            "cycles": 4,
+            "operation": "A=A+#",
+            "flags": "**----**",
+            "stability": ""
+        },
+        {
+            "hex": 66,
+            "mnemonic": "ROR",
+            "addrmode": "zpgm",
+            "cycles": 5,
+            "operation": "#=#>>1+(C<<7)",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": 67,
+            "mnemonic": "RRA",
+            "addrmode": "zpgm",
+            "cycles": 5,
+            "operation": "#=#>>1+(C<<7); A=A+#",
+            "flags": "**----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 68,
+            "mnemonic": "PLA",
+            "addrmode": "imp",
+            "cycles": 4,
+            "operation": "A=[++S]",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": 69,
+            "mnemonic": "ADC",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "A=A+#",
+            "flags": "**----**",
+            "stability": ""
+        },
+        {
+            "hex": "6A",
+            "mnemonic": "ROR",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "#=#>>1+(C<<7)",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": "6B",
+            "mnemonic": "ARR",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "A=(A&#)>>1",
+            "flags": "**----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "6C",
+            "mnemonic": "JMP",
+            "addrmode": "ind",
+            "cycles": 5,
+            "operation": "PC=#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "6D",
+            "mnemonic": "ADC",
+            "addrmode": "absr",
+            "cycles": 4,
+            "operation": "A=A+#",
+            "flags": "**----**",
+            "stability": ""
+        },
+        {
+            "hex": "6E",
+            "mnemonic": "ROR",
+            "addrmode": "absm",
+            "cycles": 6,
+            "operation": "#=#>>1+(C<<7)",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": "6F",
+            "mnemonic": "RRA",
+            "addrmode": "absm",
+            "cycles": 6,
+            "operation": "#=#>>1+(C<<7); A=A+#",
+            "flags": "**----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 70,
+            "mnemonic": "BVS",
+            "addrmode": "rel",
+            "cycles": "2-4",
+            "operation": "if V=1: PC=PC+#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": 71,
+            "mnemonic": "ADC",
+            "addrmode": "izyr",
+            "cycles": "5-6",
+            "operation": "A=A+#",
+            "flags": "**----**",
+            "stability": ""
+        },
+        {
+            "hex": 72,
+            "mnemonic": "KIL",
+            "addrmode": "rel",
+            "cycles": "2-4",
+            "operation": "crash",
+            "flags": "--------",
+            "stability": "crash"
+        },
+        {
+            "hex": 73,
+            "mnemonic": "RRA",
+            "addrmode": "izym",
+            "cycles": 8,
+            "operation": "#=#>>1+(C<<7); A=A+#",
+            "flags": "**----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 74,
+            "mnemonic": "NOP",
+            "addrmode": "zpxr",
+            "cycles": 4,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": 75,
+            "mnemonic": "ADC",
+            "addrmode": "zpxr",
+            "cycles": 4,
+            "operation": "A=A+#",
+            "flags": "**----**",
+            "stability": ""
+        },
+        {
+            "hex": 76,
+            "mnemonic": "ROR",
+            "addrmode": "zpxm",
+            "cycles": 6,
+            "operation": "#=#>>1+(C<<7)",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": 77,
+            "mnemonic": "RRA",
+            "addrmode": "zpxm",
+            "cycles": 6,
+            "operation": "#=#>>1+(C<<7); A=A+#",
+            "flags": "**----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 78,
+            "mnemonic": "SEI",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "I=1",
+            "flags": "-----1--",
+            "stability": ""
+        },
+        {
+            "hex": 79,
+            "mnemonic": "ADC",
+            "addrmode": "abyr",
+            "cycles": "4-5",
+            "operation": "A=A+#",
+            "flags": "**----**",
+            "stability": ""
+        },
+        {
+            "hex": "7A",
+            "mnemonic": "NOP",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": "7B",
+            "mnemonic": "RRA",
+            "addrmode": "abym",
+            "cycles": 7,
+            "operation": "#=#>>1+(C<<7); A=A+#",
+            "flags": "**----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "7C",
+            "mnemonic": "NOP",
+            "addrmode": "abxr",
+            "cycles": "4-5",
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": "7D",
+            "mnemonic": "ADC",
+            "addrmode": "abxr",
+            "cycles": "4-5",
+            "operation": "A=A+#",
+            "flags": "**----**",
+            "stability": ""
+        },
+        {
+            "hex": "7E",
+            "mnemonic": "ROR",
+            "addrmode": "abxm",
+            "cycles": 7,
+            "operation": "#=#>>1+(C<<7)",
+            "flags": "*-----**",
+            "stability": ""
+        },
+        {
+            "hex": "7F",
+            "mnemonic": "RRA",
+            "addrmode": "abxm",
+            "cycles": 7,
+            "operation": "#=#>>1+(C<<7); A=A+#",
+            "flags": "**----**",
+            "stability": "stable"
+        },
+        {
+            "hex": 80,
+            "mnemonic": "NOP",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": 81,
+            "mnemonic": "STA",
+            "addrmode": "izxw",
+            "cycles": 7,
+            "operation": "#=A",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": 82,
+            "mnemonic": "NOP",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": 83,
+            "mnemonic": "SAX",
+            "addrmode": "izxw",
+            "cycles": 7,
+            "operation": "#=A&X",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": 84,
+            "mnemonic": "STY",
+            "addrmode": "zpgw",
+            "cycles": 3,
+            "operation": "#=Y",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": 85,
+            "mnemonic": "STA",
+            "addrmode": "zpgw",
+            "cycles": 3,
+            "operation": "#=A",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": 86,
+            "mnemonic": "STX",
+            "addrmode": "zpgw",
+            "cycles": 3,
+            "operation": "#=X",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": 87,
+            "mnemonic": "SAX",
+            "addrmode": "zpgw",
+            "cycles": 3,
+            "operation": "#=A&X",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": 88,
+            "mnemonic": "DEY",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "Y=Y-1",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": 89,
+            "mnemonic": "NOP",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": "8A",
+            "mnemonic": "TXA",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "A=X",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "8B",
+            "mnemonic": "XAA",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "A=X&#",
+            "flags": "--------",
+            "stability": "highly unstable"
+        },
+        {
+            "hex": "8C",
+            "mnemonic": "STY",
+            "addrmode": "absw",
+            "cycles": 4,
+            "operation": "#=Y",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "8D",
+            "mnemonic": "STA",
+            "addrmode": "absw",
+            "cycles": 4,
+            "operation": "#=A",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "8E",
+            "mnemonic": "STX",
+            "addrmode": "absw",
+            "cycles": 4,
+            "operation": "#=X",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "8F",
+            "mnemonic": "SAX",
+            "addrmode": "absw",
+            "cycles": 4,
+            "operation": "#=A&X",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": 90,
+            "mnemonic": "BCC",
+            "addrmode": "rel",
+            "cycles": "2-4",
+            "operation": "if C=0: PC=PC+#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": 91,
+            "mnemonic": "STA",
+            "addrmode": "izyw",
+            "cycles": 6,
+            "operation": "#=A",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": 92,
+            "mnemonic": "KIL",
+            "addrmode": "rel",
+            "cycles": "2-4",
+            "operation": "crash",
+            "flags": "--------",
+            "stability": "crash"
+        },
+        {
+            "hex": 93,
+            "mnemonic": "AHX",
+            "addrmode": "izyw",
+            "cycles": 6,
+            "operation": "#=A&X&H",
+            "flags": "--------",
+            "stability": "unstable"
+        },
+        {
+            "hex": 94,
+            "mnemonic": "STY",
+            "addrmode": "zpxw",
+            "cycles": 4,
+            "operation": "#=Y",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": 95,
+            "mnemonic": "STA",
+            "addrmode": "zpxw",
+            "cycles": 4,
+            "operation": "#=A",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": 96,
+            "mnemonic": "STX",
+            "addrmode": "zpyw",
+            "cycles": 4,
+            "operation": "#=X",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": 97,
+            "mnemonic": "SAX",
+            "addrmode": "zpyw",
+            "cycles": 4,
+            "operation": "#=A&X",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": 98,
+            "mnemonic": "TYA",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "A=Y",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": 99,
+            "mnemonic": "STA",
+            "addrmode": "abyw",
+            "cycles": 7,
+            "operation": "#=A",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "9A",
+            "mnemonic": "TXS",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "S=X",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "9B",
+            "mnemonic": "TAS",
+            "addrmode": "abyw",
+            "cycles": 7,
+            "operation": "S=A&X; #=S&H",
+            "flags": "--------",
+            "stability": "unstable"
+        },
+        {
+            "hex": "9C",
+            "mnemonic": "SHY",
+            "addrmode": "abxw",
+            "cycles": 5,
+            "operation": "#=Y&H",
+            "flags": "--------",
+            "stability": "unstable"
+        },
+        {
+            "hex": "9D",
+            "mnemonic": "STA",
+            "addrmode": "abxw",
+            "cycles": 5,
+            "operation": "#=A",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "9E",
+            "mnemonic": "SHX",
+            "addrmode": "abyw",
+            "cycles": 7,
+            "operation": "#=X&H",
+            "flags": "--------",
+            "stability": "unstable"
+        },
+        {
+            "hex": "9F",
+            "mnemonic": "AHX",
+            "addrmode": "abyw",
+            "cycles": 7,
+            "operation": "#=A&X&H",
+            "flags": "--------",
+            "stability": "unstable"
+        },
+        {
+            "hex": "A0",
+            "mnemonic": "LDY",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "Y=#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "A1",
+            "mnemonic": "LDA",
+            "addrmode": "izxr",
+            "cycles": 6,
+            "operation": "A=#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "A2",
+            "mnemonic": "LDX",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "X=#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "A3",
+            "mnemonic": "LAX",
+            "addrmode": "izxr",
+            "cycles": 6,
+            "operation": "A,X=#",
+            "flags": "*-----*-",
+            "stability": "stable"
+        },
+        {
+            "hex": "A4",
+            "mnemonic": "LDY",
+            "addrmode": "zpgr",
+            "cycles": 4,
+            "operation": "Y=#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "A5",
+            "mnemonic": "LDA",
+            "addrmode": "zpgr",
+            "cycles": 4,
+            "operation": "A=#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "A6",
+            "mnemonic": "LDX",
+            "addrmode": "zpgr",
+            "cycles": 4,
+            "operation": "X=#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "A7",
+            "mnemonic": "LAX",
+            "addrmode": "zpgr",
+            "cycles": 4,
+            "operation": "A,X=#",
+            "flags": "*-----*-",
+            "stability": "stable"
+        },
+        {
+            "hex": "A8",
+            "mnemonic": "TAY",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "Y=A",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "A9",
+            "mnemonic": "LDA",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "A=#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "AA",
+            "mnemonic": "TAX",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "X=A",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "AB",
+            "mnemonic": "LAX",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "A,X=#",
+            "flags": "*-----*-",
+            "stability": "highly unstable"
+        },
+        {
+            "hex": "AC",
+            "mnemonic": "LDY",
+            "addrmode": "absr",
+            "cycles": 4,
+            "operation": "Y=#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "AD",
+            "mnemonic": "LDA",
+            "addrmode": "absr",
+            "cycles": 4,
+            "operation": "A=#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "AE",
+            "mnemonic": "LDX",
+            "addrmode": "absr",
+            "cycles": 4,
+            "operation": "X=#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "AF",
+            "mnemonic": "LAX",
+            "addrmode": "absr",
+            "cycles": 4,
+            "operation": "A,X=#",
+            "flags": "*-----*-",
+            "stability": "stable"
+        },
+        {
+            "hex": "B0",
+            "mnemonic": "BCS",
+            "addrmode": "rel",
+            "cycles": "2-4",
+            "operation": "if C=1: PC=PC+#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "B1",
+            "mnemonic": "LDA",
+            "addrmode": "izyr",
+            "cycles": "5-6",
+            "operation": "A=#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "B2",
+            "mnemonic": "KIL",
+            "addrmode": "rel",
+            "cycles": "2-4",
+            "operation": "crash",
+            "flags": "--------",
+            "stability": "crash"
+        },
+        {
+            "hex": "B3",
+            "mnemonic": "LAX",
+            "addrmode": "izyr",
+            "cycles": "5-6",
+            "operation": "A,X=#",
+            "flags": "*-----*-",
+            "stability": "stable"
+        },
+        {
+            "hex": "B4",
+            "mnemonic": "LDY",
+            "addrmode": "zpxr",
+            "cycles": 4,
+            "operation": "Y=#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "B5",
+            "mnemonic": "LDA",
+            "addrmode": "zpxr",
+            "cycles": 4,
+            "operation": "A=#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "B6",
+            "mnemonic": "LDX",
+            "addrmode": "zpyr",
+            "cycles": 4,
+            "operation": "X=#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "B7",
+            "mnemonic": "LAX",
+            "addrmode": "zpyr",
+            "cycles": 4,
+            "operation": "A,X=#",
+            "flags": "*-----*-",
+            "stability": "stable"
+        },
+        {
+            "hex": "B8",
+            "mnemonic": "CLV",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "V=0",
+            "flags": "-0------",
+            "stability": ""
+        },
+        {
+            "hex": "B9",
+            "mnemonic": "LDA",
+            "addrmode": "abyr",
+            "cycles": "4-5",
+            "operation": "A=#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "BA",
+            "mnemonic": "TSX",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "X=S",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "BB",
+            "mnemonic": "LAS",
+            "addrmode": "abyr",
+            "cycles": "4-5",
+            "operation": "A,X,S=#&S",
+            "flags": "*-----*-",
+            "stability": "stable"
+        },
+        {
+            "hex": "BC",
+            "mnemonic": "LDY",
+            "addrmode": "abxr",
+            "cycles": "4-5",
+            "operation": "Y=#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "BD",
+            "mnemonic": "LDA",
+            "addrmode": "abxr",
+            "cycles": "4-5",
+            "operation": "A=#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "BE",
+            "mnemonic": "LDX",
+            "addrmode": "abyr",
+            "cycles": "4-5",
+            "operation": "X=#",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "BF",
+            "mnemonic": "LAX",
+            "addrmode": "abyr",
+            "cycles": "4-5",
+            "operation": "A,X=#",
+            "flags": "*-----*-",
+            "stability": "stable"
+        },
+        {
+            "hex": "C0",
+            "mnemonic": "CPY",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "Y-#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "C1",
+            "mnemonic": "CMP",
+            "addrmode": "izxr",
+            "cycles": 6,
+            "operation": "A-#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "C2",
+            "mnemonic": "NOP",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": "C3",
+            "mnemonic": "DCP",
+            "addrmode": "izxm",
+            "cycles": 8,
+            "operation": "#=#-1; A-#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "C4",
+            "mnemonic": "CPY",
+            "addrmode": "zpgr",
+            "cycles": 4,
+            "operation": "Y-#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "C5",
+            "mnemonic": "CMP",
+            "addrmode": "zpgr",
+            "cycles": 4,
+            "operation": "A-#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "C6",
+            "mnemonic": "DEC",
+            "addrmode": "zpgm",
+            "cycles": 5,
+            "operation": "#=#-1",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "C7",
+            "mnemonic": "DCP",
+            "addrmode": "zpgm",
+            "cycles": 5,
+            "operation": "#=#-1; A-#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "C8",
+            "mnemonic": "INY",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "Y=Y+1",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "C9",
+            "mnemonic": "CMP",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "A-#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "CA",
+            "mnemonic": "DEX",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "X=X-1",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "CB",
+            "mnemonic": "AXS",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "X=A&X-#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "CC",
+            "mnemonic": "CPY",
+            "addrmode": "absr",
+            "cycles": 4,
+            "operation": "Y-#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "CD",
+            "mnemonic": "CMP",
+            "addrmode": "absr",
+            "cycles": 4,
+            "operation": "A-#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "CE",
+            "mnemonic": "DEC",
+            "addrmode": "absm",
+            "cycles": 6,
+            "operation": "#=#-1",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "CF",
+            "mnemonic": "DCP",
+            "addrmode": "absm",
+            "cycles": 6,
+            "operation": "#=#-1; A-#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "D0",
+            "mnemonic": "BNE",
+            "addrmode": "rel",
+            "cycles": "2-4",
+            "operation": "if Z=0: PC=PC+#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "D1",
+            "mnemonic": "CMP",
+            "addrmode": "izyr",
+            "cycles": "5-6",
+            "operation": "A-#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "D2",
+            "mnemonic": "KIL",
+            "addrmode": "rel",
+            "cycles": "2-4",
+            "operation": "crash",
+            "flags": "--------",
+            "stability": "crash"
+        },
+        {
+            "hex": "D3",
+            "mnemonic": "DCP",
+            "addrmode": "izym",
+            "cycles": 8,
+            "operation": "#=#-1; A-#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "D4",
+            "mnemonic": "NOP",
+            "addrmode": "zpxr",
+            "cycles": 4,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": "D5",
+            "mnemonic": "CMP",
+            "addrmode": "zpxr",
+            "cycles": 4,
+            "operation": "A-#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "D6",
+            "mnemonic": "DEC",
+            "addrmode": "zpxm",
+            "cycles": 6,
+            "operation": "#=#-1",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "D7",
+            "mnemonic": "DCP",
+            "addrmode": "zpxm",
+            "cycles": 6,
+            "operation": "#=#-1; A-#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "D8",
+            "mnemonic": "CLD",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "D=0",
+            "flags": "----0---",
+            "stability": ""
+        },
+        {
+            "hex": "D9",
+            "mnemonic": "CMP",
+            "addrmode": "abyr",
+            "cycles": "4-5",
+            "operation": "A-#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "DA",
+            "mnemonic": "NOP",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": "DB",
+            "mnemonic": "DCP",
+            "addrmode": "abym",
+            "cycles": 7,
+            "operation": "#=#-1; A-#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "DC",
+            "mnemonic": "NOP",
+            "addrmode": "abxr",
+            "cycles": "4-5",
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": "DD",
+            "mnemonic": "CMP",
+            "addrmode": "abxr",
+            "cycles": "4-5",
+            "operation": "A-#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "DE",
+            "mnemonic": "DEC",
+            "addrmode": "abxm",
+            "cycles": 7,
+            "operation": "#=#-1",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "DF",
+            "mnemonic": "DCP",
+            "addrmode": "abxm",
+            "cycles": 7,
+            "operation": "#=#-1; A-#",
+            "flags": "*-----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "E0",
+            "mnemonic": "CPX",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "X-#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "E1",
+            "mnemonic": "SBC",
+            "addrmode": "izxr",
+            "cycles": 6,
+            "operation": "A=A-#",
+            "flags": "**----**",
+            "stability": ""
+        },
+        {
+            "hex": "E2",
+            "mnemonic": "NOP",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": "E3",
+            "mnemonic": "ISC",
+            "addrmode": "izxm",
+            "cycles": 8,
+            "operation": "#=#+1; A-#",
+            "flags": "**----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "E4",
+            "mnemonic": "CPX",
+            "addrmode": "zpgr",
+            "cycles": 4,
+            "operation": "X-#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "E5",
+            "mnemonic": "SBC",
+            "addrmode": "zpgr",
+            "cycles": 4,
+            "operation": "A=A-#",
+            "flags": "**----**",
+            "stability": ""
+        },
+        {
+            "hex": "E6",
+            "mnemonic": "INC",
+            "addrmode": "zpgm",
+            "cycles": 5,
+            "operation": "#=#+1",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "E7",
+            "mnemonic": "ISC",
+            "addrmode": "zpgm",
+            "cycles": 5,
+            "operation": "#=#+1; A-#",
+            "flags": "**----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "E8",
+            "mnemonic": "INX",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "X=X+1",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "E9",
+            "mnemonic": "SBC",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "A=A-#",
+            "flags": "**----**",
+            "stability": ""
+        },
+        {
+            "hex": "EA",
+            "mnemonic": "NOP",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "EB",
+            "mnemonic": "SBC",
+            "addrmode": "imm",
+            "cycles": 2,
+            "operation": "A=A-#",
+            "flags": "**----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "EC",
+            "mnemonic": "CPX",
+            "addrmode": "absr",
+            "cycles": 4,
+            "operation": "X-#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "ED",
+            "mnemonic": "SBC",
+            "addrmode": "absr",
+            "cycles": 4,
+            "operation": "A=A-#",
+            "flags": "**----**",
+            "stability": ""
+        },
+        {
+            "hex": "EE",
+            "mnemonic": "INC",
+            "addrmode": "absm",
+            "cycles": 6,
+            "operation": "#=#+1",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "EF",
+            "mnemonic": "ISC",
+            "addrmode": "absm",
+            "cycles": 6,
+            "operation": "#=#+1; A-#",
+            "flags": "**----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "F0",
+            "mnemonic": "BEQ",
+            "addrmode": "rel",
+            "cycles": "2-4",
+            "operation": "if Z=1: PC=PC+#",
+            "flags": "--------",
+            "stability": ""
+        },
+        {
+            "hex": "F1",
+            "mnemonic": "SBC",
+            "addrmode": "izyr",
+            "cycles": "5-6",
+            "operation": "A=A-#",
+            "flags": "**----**",
+            "stability": ""
+        },
+        {
+            "hex": "F2",
+            "mnemonic": "KIL",
+            "addrmode": "rel",
+            "cycles": "2-4",
+            "operation": "crash",
+            "flags": "--------",
+            "stability": "crash"
+        },
+        {
+            "hex": "F3",
+            "mnemonic": "ISC",
+            "addrmode": "izym",
+            "cycles": 8,
+            "operation": "#=#+1; A-#",
+            "flags": "**----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "F4",
+            "mnemonic": "NOP",
+            "addrmode": "zpxr",
+            "cycles": 4,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": "F5",
+            "mnemonic": "SBC",
+            "addrmode": "zpxr",
+            "cycles": 4,
+            "operation": "A=A-#",
+            "flags": "**----**",
+            "stability": ""
+        },
+        {
+            "hex": "F6",
+            "mnemonic": "INC",
+            "addrmode": "zpxm",
+            "cycles": 6,
+            "operation": "#=#+1",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "F7",
+            "mnemonic": "ISC",
+            "addrmode": "zpxm",
+            "cycles": 6,
+            "operation": "#=#+1; A-#",
+            "flags": "**----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "F8",
+            "mnemonic": "SED",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "D=1",
+            "flags": "----1---",
+            "stability": ""
+        },
+        {
+            "hex": "F9",
+            "mnemonic": "SBC",
+            "addrmode": "abyr",
+            "cycles": "4-5",
+            "operation": "A=A-#",
+            "flags": "**----**",
+            "stability": ""
+        },
+        {
+            "hex": "FA",
+            "mnemonic": "NOP",
+            "addrmode": "imp",
+            "cycles": 2,
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": "FB",
+            "mnemonic": "ISC",
+            "addrmode": "abym",
+            "cycles": 7,
+            "operation": "#=#+1; A-#",
+            "flags": "**----**",
+            "stability": "stable"
+        },
+        {
+            "hex": "FC",
+            "mnemonic": "NOP",
+            "addrmode": "abxr",
+            "cycles": "4-5",
+            "operation": "do nothing",
+            "flags": "--------",
+            "stability": "stable"
+        },
+        {
+            "hex": "FD",
+            "mnemonic": "SBC",
+            "addrmode": "abxr",
+            "cycles": "4-5",
+            "operation": "A=A-#",
+            "flags": "**----**",
+            "stability": ""
+        },
+        {
+            "hex": "FE",
+            "mnemonic": "INC",
+            "addrmode": "abxm",
+            "cycles": 7,
+            "operation": "#=#+1",
+            "flags": "*-----*-",
+            "stability": ""
+        },
+        {
+            "hex": "FF",
+            "mnemonic": "ISC",
+            "addrmode": "abxm",
+            "cycles": 7,
+            "operation": "#=#+1; A-#",
+            "flags": "**----**",
+            "stability": "stable"
+        }
+    ]
+}

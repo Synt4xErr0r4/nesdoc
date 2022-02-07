@@ -1,0 +1,257 @@
+hex,mnemonic,addrmode,cycles,operation,flags,stability
+00,BRK,imp,7,"[S--]=PC,P; PC=[$FFFE]",--------,
+01,ORA,izxr,6,"A=A|#",*-----*-,
+02,KIL,imm,2,crash,--------,crash
+03,SLO,izxm,8,"#=#<<1; A=A|#",*-----**,stable
+04,NOP,zpgr,4,"do nothing",--------,stable
+05,ORA,zpgr,4,"A=A|#",*-----*-,
+06,ASL,zpgm,5,"#=#<<1",*-----**,
+07,SLO,zpgm,5,"#=#<<1; A=A|#",*-----**,stable
+08,PHP,imp,3,"[S--]=P",--------,
+09,ORA,imm,2,"A=A|#",*-----*-,
+0A,ASL,imp,2,"#=#<<1",*-----**,
+0B,ANC,imm,2,"A=A&#",*-----**,stable
+0C,NOP,absr,4,"do nothing",--------,
+0D,ORA,absr,4,"A=A|#",*-----*-,
+0E,ASL,absm,6,"#=#<<1",*-----**,
+0F,SLO,absm,6,"#=#<<1; A=A|#",*-----**,stable
+10,BPL,rel,2-4,"if N=0: PC=PC+#",--------,
+11,ORA,izyr,5-6,"A=A|#",*-----*-,
+12,KIL,rel,2-4,crash,--------,crash
+13,SLO,izym,8,"#=#<<1; A=A|#",*-----**,stable
+14,NOP,zpxr,4,"do nothing",--------,stable
+15,ORA,zpxr,4,"A=A|#",*-----*-,
+16,ASL,zpxm,6,"#=#<<1",*-----**,
+17,SLO,zpxm,6,"#=#<<1; A=A|#",*-----**,stable
+18,CLC,imp,2,"C=0",-------0,
+19,ORA,abyr,4-5,"A=A|#",*-----*-,
+1A,NOP,imp,2,"do nothing",--------,stable
+1B,SLO,abym,7,"#=#<<1; A=A|#",*-----**,stable
+1C,NOP,abxr,4-5,"do nothing",--------,stable
+1D,ORA,abxr,4-5,"A=A|#",*-----*-,
+1E,ASL,abxm,7,"#=#<<1",*-----**,
+1F,SLO,abxm,7,"#=#<<1; A=A|#",*-----**,stable
+20,JSR,abs,6,"[S--]=PC; PC=#",--------,
+21,AND,izxr,6,"A=A&#",*-----*-,
+22,KIL,imm,2,crash,--------,crash
+23,RLA,izxm,8,"#=#<<1+C; A=A&#",*-----**,stable
+24,BIT,zpgr,4,"N=b7; V=b6; Z=A&#",**----*-,
+25,AND,zpgr,4,"A=A&#",*-----*-,
+26,ROL,zpgm,5,"#=#<<1+C",*-----**,
+27,RLA,zpgm,5,"#=#<<1+C; A=A&#",*-----**,stable
+28,PLP,imp,4,"P=[++S]",**--****,
+29,AND,imm,2,"A=A&#",*-----*-,
+2A,ROL,imp,2,"#=#<<1+C",*-----**,
+2B,ANC,imm,2,"A=A&#",*-----**,stable
+2C,BIT,absr,4,"N=b7; V=b6; Z=A&#",**----*-,
+2D,AND,absr,4,"A=A&#",*-----*-,
+2E,ROL,absm,6,"#=#<<1+C",*-----**,
+2F,RLA,absm,6,"#=#<<1+C; A=A&#",*-----**,stable
+30,BMI,rel,2-4,"if N=1: PC=PC+#",--------,
+31,AND,izyr,5-6,"A=A&#",*-----*-,
+32,KIL,rel,2-4,crash,--------,crash
+33,RLA,izym,8,"#=#<<1+C; A=A&#",*-----**,stable
+34,NOP,zpxr,4,"do nothing",--------,stable
+35,AND,zpxr,4,"A=A&#",*-----*-,
+36,ROL,zpxm,6,"#=#<<1+C",*-----**,
+37,RLA,zpxm,6,"#=#<<1+C; A=A&#",*-----**,stable
+38,SEC,imp,2,"C=1",-------1,
+39,AND,abyr,4-5,"A=A&#",*-----*-,
+3A,NOP,imp,2,"do nothing",--------,stable
+3B,RLA,abym,7,"#=#<<1+C; A=A&#",*-----**,stable
+3C,NOP,abxr,4-5,"do nothing",--------,stable
+3D,AND,abxr,4-5,"A=A&#",*-----*-,
+3E,ROL,abxm,7,"#=#<<1+C",*-----**,
+3F,RLA,abxm,7,"#=#<<1+C; A=A&#",*-----**,stable
+40,RTI,imp,6,"P,PC=[++S]",--------,
+41,EOR,izxr,6,"A=A^#",*-----*-,
+42,KIL,imm,2,crash,--------,crash
+43,SRE,izxm,8,"#=#>>1; A=A^#",*-----**,stable
+44,NOP,zpgr,4,"do nothing",--------,stable
+45,EOR,zpgr,4,"A=A^#",*-----*-,
+46,LSR,zpgm,5,"#=#>>1",*-----**,
+47,SRE,zpgm,5,"#=#>>1; A=A^#",*-----**,stable
+48,PHA,imp,3,"[S--]=A",*-----*-,
+49,EOR,imm,2,"A=A^#",*-----*-,
+4A,LSR,imp,2,"#=#>>1",*-----**,
+4B,ALR,imm,2,"A=(A&#)>>1",*-----**,stable
+4C,JMP,abs,3,"PC=#",--------,
+4D,EOR,absr,4,"A=A^#",*-----*-,
+4E,LSR,absm,6,"#=#>>1",*-----**,
+4F,SRE,absm,6,"#=#>>1; A=A^#",*-----**,stable
+50,BVC,rel,2-4,"if V=0: PC=PC+#",--------,
+51,EOR,izyr,5-6,"A=A^#",*-----*-,
+52,KIL,rel,2-4,crash,--------,crash
+53,SRE,izym,8,"#=#>>1; A=A^#",*-----**,stable
+54,NOP,zpxr,4,"do nothing",--------,stable
+55,EOR,zpxr,4,"A=A^#",*-----*-,
+56,LSR,zpxm,6,"#=#>>1",*-----**,
+57,SRE,zpxm,6,"#=#>>1; A=A^#",*-----**,stable
+58,CLI,imp,2,"I=0",-----0--,
+59,EOR,abyr,4-5,"A=A^#",*-----*-,
+5A,NOP,imp,2,"do nothing",--------,stable
+5B,SRE,abym,7,"#=#>>1; A=A^#",*-----**,stable
+5C,NOP,abxr,4-5,"do nothing",--------,stable
+5D,EOR,abxr,4-5,"A=A^#",*-----*-,
+5E,LSR,abxm,7,"#=#>>1",*-----**,
+5F,SRE,abxm,7,"#=#>>1; A=A^#",*-----**,stable
+60,RTS,imp,5,"PC=[++S]",--------,
+61,ADC,izxr,6,"A=A+#",**----**,
+62,KIL,imm,2,crash,--------,crash
+63,RRA,izxm,8,"#=#>>1+(C<<7); A=A+#",**----**,stable
+64,NOP,zpgr,4,"do nothing",--------,stable
+65,ADC,zpgr,4,"A=A+#",**----**,
+66,ROR,zpgm,5,"#=#>>1+(C<<7)",*-----**,
+67,RRA,zpgm,5,"#=#>>1+(C<<7); A=A+#",**----**,stable
+68,PLA,imp,4,"A=[++S]",--------,
+69,ADC,imm,2,"A=A+#",**----**,
+6A,ROR,imp,2,"#=#>>1+(C<<7)",*-----**,
+6B,ARR,imm,2,"A=(A&#)>>1",**----**,stable
+6C,JMP,ind,5,"PC=#",--------,
+6D,ADC,absr,4,"A=A+#",**----**,
+6E,ROR,absm,6,"#=#>>1+(C<<7)",*-----**,
+6F,RRA,absm,6,"#=#>>1+(C<<7); A=A+#",**----**,stable
+70,BVS,rel,2-4,"if V=1: PC=PC+#",--------,
+71,ADC,izyr,5-6,"A=A+#",**----**,
+72,KIL,rel,2-4,crash,--------,crash
+73,RRA,izym,8,"#=#>>1+(C<<7); A=A+#",**----**,stable
+74,NOP,zpxr,4,"do nothing",--------,stable
+75,ADC,zpxr,4,"A=A+#",**----**,
+76,ROR,zpxm,6,"#=#>>1+(C<<7)",*-----**,
+77,RRA,zpxm,6,"#=#>>1+(C<<7); A=A+#",**----**,stable
+78,SEI,imp,2,"I=1",-----1--,
+79,ADC,abyr,4-5,"A=A+#",**----**,
+7A,NOP,imp,2,"do nothing",--------,stable
+7B,RRA,abym,7,"#=#>>1+(C<<7); A=A+#",**----**,stable
+7C,NOP,abxr,4-5,"do nothing",--------,stable
+7D,ADC,abxr,4-5,"A=A+#",**----**,
+7E,ROR,abxm,7,"#=#>>1+(C<<7)",*-----**,
+7F,RRA,abxm,7,"#=#>>1+(C<<7); A=A+#",**----**,stable
+80,NOP,imm,2,"do nothing",--------,stable
+81,STA,izxw,7,"#=A",--------,
+82,NOP,imm,2,"do nothing",--------,stable
+83,SAX,izxw,7,"#=A&X",--------,stable
+84,STY,zpgw,3,"#=Y",--------,
+85,STA,zpgw,3,"#=A",--------,
+86,STX,zpgw,3,"#=X",--------,
+87,SAX,zpgw,3,"#=A&X",--------,stable
+88,DEY,imp,2,"Y=Y-1",*-----*-,
+89,NOP,imm,2,"do nothing",--------,stable
+8A,TXA,imp,2,"A=X",*-----*-,
+8B,XAA,imm,2,"A=X&#",--------,highly unstable
+8C,STY,absw,4,"#=Y",--------,
+8D,STA,absw,4,"#=A",--------,
+8E,STX,absw,4,"#=X",--------,
+8F,SAX,absw,4,"#=A&X",--------,stable
+90,BCC,rel,2-4,"if C=0: PC=PC+#",--------,
+91,STA,izyw,6,"#=A",--------,
+92,KIL,rel,2-4,crash,--------,crash
+93,AHX,izyw,6,"#=A&X&H",--------,unstable
+94,STY,zpxw,4,"#=Y",--------,
+95,STA,zpxw,4,"#=A",--------,
+96,STX,zpyw,4,"#=X",--------,
+97,SAX,zpyw,4,"#=A&X",--------,stable
+98,TYA,imp,2,"A=Y",*-----*-,
+99,STA,abyw,7,"#=A",--------,
+9A,TXS,imp,2,"S=X",--------,
+9B,TAS,abyw,7,"S=A&X; #=S&H",--------,unstable
+9C,SHY,abxw,5,"#=Y&H",--------,unstable
+9D,STA,abxw,5,"#=A",--------,
+9E,SHX,abyw,7,"#=X&H",--------,unstable
+9F,AHX,abyw,7,"#=A&X&H",--------,unstable
+A0,LDY,imm,2,"Y=#",*-----*-,
+A1,LDA,izxr,6,"A=#",*-----*-,
+A2,LDX,imm,2,"X=#",*-----*-,
+A3,LAX,izxr,6,"A,X=#",*-----*-,stable
+A4,LDY,zpgr,4,"Y=#",*-----*-,
+A5,LDA,zpgr,4,"A=#",*-----*-,
+A6,LDX,zpgr,4,"X=#",*-----*-,
+A7,LAX,zpgr,4,"A,X=#",*-----*-,stable
+A8,TAY,imp,2,"Y=A",*-----*-,
+A9,LDA,imm,2,"A=#",*-----*-,
+AA,TAX,imp,2,"X=A",*-----*-,
+AB,LAX,imm,2,"A,X=#",*-----*-,highly unstable
+AC,LDY,absr,4,"Y=#",*-----*-,
+AD,LDA,absr,4,"A=#",*-----*-,
+AE,LDX,absr,4,"X=#",*-----*-,
+AF,LAX,absr,4,"A,X=#",*-----*-,stable
+B0,BCS,rel,2-4,"if C=1: PC=PC+#",--------,
+B1,LDA,izyr,5-6,"A=#",*-----*-,
+B2,KIL,rel,2-4,crash,--------,crash
+B3,LAX,izyr,5-6,"A,X=#",*-----*-,stable
+B4,LDY,zpxr,4,"Y=#",*-----*-,
+B5,LDA,zpxr,4,"A=#",*-----*-,
+B6,LDX,zpyr,4,"X=#",*-----*-,
+B7,LAX,zpyr,4,"A,X=#",*-----*-,stable
+B8,CLV,imp,2,"V=0",-0------,
+B9,LDA,abyr,4-5,"A=#",*-----*-,
+BA,TSX,imp,2,"X=S",*-----*-,
+BB,LAS,abyr,4-5,"A,X,S=#&S",*-----*-,stable
+BC,LDY,abxr,4-5,"Y=#",*-----*-,
+BD,LDA,abxr,4-5,"A=#",*-----*-,
+BE,LDX,abyr,4-5,"X=#",*-----*-,
+BF,LAX,abyr,4-5,"A,X=#",*-----*-,stable
+C0,CPY,imm,2,"Y-#",--------,
+C1,CMP,izxr,6,"A-#",--------,
+C2,NOP,imm,2,"do nothing",--------,stable
+C3,DCP,izxm,8,"#=#-1; A-#",*-----**,stable
+C4,CPY,zpgr,4,"Y-#",--------,
+C5,CMP,zpgr,4,"A-#",--------,
+C6,DEC,zpgm,5,"#=#-1",*-----*-,
+C7,DCP,zpgm,5,"#=#-1; A-#",*-----**,stable
+C8,INY,imp,2,"Y=Y+1",*-----*-,
+C9,CMP,imm,2,"A-#",--------,
+CA,DEX,imp,2,"X=X-1",*-----*-,
+CB,AXS,imm,2,"X=A&X-#",*-----**,stable
+CC,CPY,absr,4,"Y-#",--------,
+CD,CMP,absr,4,"A-#",--------,
+CE,DEC,absm,6,"#=#-1",*-----*-,
+CF,DCP,absm,6,"#=#-1; A-#",*-----**,stable
+D0,BNE,rel,2-4,"if Z=0: PC=PC+#",--------,
+D1,CMP,izyr,5-6,"A-#",--------,
+D2,KIL,rel,2-4,crash,--------,crash
+D3,DCP,izym,8,"#=#-1; A-#",*-----**,stable
+D4,NOP,zpxr,4,"do nothing",--------,stable
+D5,CMP,zpxr,4,"A-#",--------,
+D6,DEC,zpxm,6,"#=#-1",*-----*-,
+D7,DCP,zpxm,6,"#=#-1; A-#",*-----**,stable
+D8,CLD,imp,2,"D=0",----0---,
+D9,CMP,abyr,4-5,"A-#",--------,
+DA,NOP,imp,2,"do nothing",--------,stable
+DB,DCP,abym,7,"#=#-1; A-#",*-----**,stable
+DC,NOP,abxr,4-5,"do nothing",--------,stable
+DD,CMP,abxr,4-5,"A-#",--------,
+DE,DEC,abxm,7,"#=#-1",*-----*-,
+DF,DCP,abxm,7,"#=#-1; A-#",*-----**,stable
+E0,CPX,imm,2,"X-#",--------,
+E1,SBC,izxr,6,"A=A-#",**----**,
+E2,NOP,imm,2,"do nothing",--------,stable
+E3,ISC,izxm,8,"#=#+1; A-#",**----**,stable
+E4,CPX,zpgr,4,"X-#",--------,
+E5,SBC,zpgr,4,"A=A-#",**----**,
+E6,INC,zpgm,5,"#=#+1",*-----*-,
+E7,ISC,zpgm,5,"#=#+1; A-#",**----**,stable
+E8,INX,imp,2,"X=X+1",*-----*-,
+E9,SBC,imm,2,"A=A-#",**----**,
+EA,NOP,imp,2,"do nothing",--------,
+EB,SBC,imm,2,"A=A-#",**----**,stable
+EC,CPX,absr,4,"X-#",--------,
+ED,SBC,absr,4,"A=A-#",**----**,
+EE,INC,absm,6,"#=#+1",*-----*-,
+EF,ISC,absm,6,"#=#+1; A-#",**----**,stable
+F0,BEQ,rel,2-4,"if Z=1: PC=PC+#",--------,
+F1,SBC,izyr,5-6,"A=A-#",**----**,
+F2,KIL,rel,2-4,crash,--------,crash
+F3,ISC,izym,8,"#=#+1; A-#",**----**,stable
+F4,NOP,zpxr,4,"do nothing",--------,stable
+F5,SBC,zpxr,4,"A=A-#",**----**,
+F6,INC,zpxm,6,"#=#+1",*-----*-,
+F7,ISC,zpxm,6,"#=#+1; A-#",**----**,stable
+F8,SED,imp,2,"D=1",----1---,
+F9,SBC,abyr,4-5,"A=A-#",**----**,
+FA,NOP,imp,2,"do nothing",--------,stable
+FB,ISC,abym,7,"#=#+1; A-#",**----**,stable
+FC,NOP,abxr,4-5,"do nothing",--------,stable
+FD,SBC,abxr,4-5,"A=A-#",**----**,
+FE,INC,abxm,7,"#=#+1",*-----*-,
+FF,ISC,abxm,7,"#=#+1; A-#",**----**,stable

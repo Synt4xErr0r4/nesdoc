@@ -1,0 +1,387 @@
+{
+    "__comment__": [
+        "This list contains the cycle timings of the 6502 micro processor.",
+        "It may be inaccurate or incomplete. If you find any mistakes, please contact me: thomas@syntaxerror.at",
+        "(created by SyntaxError404, GitHub: Synt4xErr0r4)",
+        "sources:",
+        "- https://wiki.nesdev.org/w/index.php?title=CPU_addressing_modes",
+        "- https://www.nesdev.com/6502_cpu.txt",
+        "- http://www.oxyron.de/html/opcodes02.html",
+        "version 1, 07.02.2022"
+    ],
+
+    "normal": {
+
+        "imp": {
+            "instructions" : [ "ASL", "CLC", "CLD", "CLI", "CLV", "DEX", "DEY", "INX", "INY", "LSR", "NOP", "ROL", "ROR", "SEC", "SED", "SEI", "TAX", "TAY", "TSX", "TXA", "TXS", "TYA" ],
+            "cycles": [
+                [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+                [ "2", "PC",                "OPCODE",   "Fetch next" ],
+                [ "0", "PC++",              "OPCODE",   "Execute; Fetch next" ]
+            ],
+            "notes": []
+        },
+
+
+
+        "imm": {
+            "instructions" : [ "ADC", "ALR", "ANC", "AND", "ARR", "AXS", "CMP", "CPX", "CPY", "EOR", "LAX", "LDA", "LDX", "LDY", "NOP", "ORA", "SBC", "XAA" ],
+            "cycles": [
+                [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+                [ "2", "PC++",              "DATA",     "Fetch data; Increment PC" ],
+                [ "0", "PC++",              "OPCODE",   "Execute; Fetch next" ]
+            ],
+            "notes": []
+        },
+
+
+
+        "ind": {
+            "instructions" : [ "JMP" ],
+            "cycles": [
+                [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+                [ "2", "PC++",              "BAL",      "Fetch BAL; Increment PC" ],
+                [ "3", "PC++",              "BAH",      "Fetch BAH; Increment PC" ],
+                [ "4", "BA",                "EAL",      "Fetch EAL" ],
+                [ "5", "BA+1*",             "PCH",      "Fetch PCH; Set PCL to EAL" ]
+            ],
+            "notes": [
+                "addition occurs on the lower byte (BAL) only"
+            ]
+        },
+
+
+
+        "rel": {
+            "instructions" : [ "BCC", "BCS", "BEQ", "BMI", "BNE", "BPL", "BVC", "BVS" ],
+            "cycles": [
+                [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+                [ "2", "PC++",              "OFFSET",   "Fetch offset; Increment PC" ],
+                [ "3/0", "PC++/PCL+OFF",    "OPCODE",   "Flag check: Increment PC on failure", "add offset to PC otherwise" ],
+                [ "4/0*", "PC/PC++**",      "OPCODE",   "Fetch next; Fix PCH: if unchanged", "increment PC" ],
+                [ "0**", "PC++",            "OPCODE",   "Fetch next"]
+            ],
+            "notes": [
+                "only executed if flag check succeeded; otherwise T3 is the first cycle of the next instruction",
+                "upper byte (PCH) may be invalid at his time (if page boundary was crossed) [addition occurs on the lower byte (PCL) only]; otherwise PC is incremented; skipped if flag check failed",
+                "only executed if page boundary was crossed in T4; otherwise T4 is the first cycle of the next instruction"
+            ]
+        },
+
+
+
+        "absr": {
+            "instructions" : [ "ADC", "AND", "BIT", "CMP", "CPX", "CPY", "EOR", "LAX", "LDA", "LDX", "LDY", "NOP", "ORA", "SBC" ],
+            "cycles": [
+                [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+                [ "2", "PC++",              "EAL",      "Fetch EAL; Increment PC" ],
+                [ "3", "PC++",              "EAH",      "Fetch EAH; Increment PC" ],
+                [ "4", "EA",                "DATA",     "Fetch data" ],
+                [ "0", "PC++",              "PCH",      "Execute; Fetch next" ]
+            ],
+            "notes": []
+        },
+        "absm": {
+            "instructions": [ "ASL", "DCP", "DEC", "INC", "ISC", "LSR", "RLA", "ROL", "ROR", "RRA", "SLO", "SRE" ],
+            "cycles": [
+                [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+                [ "2", "PC++",              "EAL",      "Fetch EAL; Increment PC" ],
+                [ "3", "PC++",              "EAH",      "Fetch EAH; Increment PC" ],
+                [ "4", "EA",                "DATA",     "Fetch data" ],
+                [ "5", "EA < DATA",         "WRITE",    "Write data; Execute" ],
+                [ "6", "EA < DATA",         "WRITE",    "Write modified data" ]
+            ],
+            "notes": []
+        },
+        "absw": {
+            "instructions": [ "SAX", "STA", "STX", "STY" ],
+            "cycles": [
+                [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+                [ "2", "PC++",              "EAL",      "Fetch EAL", "Increment PC" ],
+                [ "3", "PC++",              "EAH",      "Fetch EAH", "Increment PC" ],
+                [ "4", "EA < REGISTER",     "WRITE",    "Write register" ]
+            ],
+            "notes": []
+        },
+
+
+
+        "abxyr": {
+            "instructions": [ "ADC", "AND", "CMP", "EOR", "LAS", "LAX", "LDA", "LDX", "LDY", "NOP", "ORA", "SBC" ],
+            "cycles": [
+                [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+                [ "2", "PC++",              "EAL",      "Fetch EAL; Increment PC" ],
+                [ "3", "PC++",              "EAH",      "Fetch EAH; Increment PC" ],
+                [ "4", "EA+I*",             "DATA",     "Fetch data" ],
+                [ "5**", "EA+I",            "DATA",     "Fetch data" ]
+            ],
+            "notes": [
+                "upper byte (BAH) may be invalid at this time (if page boundary was crossed)",
+                "only executed if page boundary was crossed; skipped otherwise"
+            ]
+        },
+        "abxym": {
+            "instructions": [ "ASL", "DCP", "DEC", "INC", "ISC", "LSR", "RLA", "ROL", "ROR", "RRA", "SRE", "SLO" ],
+            "cycles": [
+                [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+                [ "2", "PC++",              "EAL",      "Fetch EAL; Increment PC" ],
+                [ "3", "PC++",              "EAH",      "Fetch EAH; Increment PC" ],
+                [ "4", "EA+X*",             "DATA",     "Fetch data; Fix EAH" ],
+                [ "5", "EA+X",              "DATA",     "Fetch data" ],
+                [ "6", "EA+X < DATA",       "WRITE",    "Write data; Execute" ],
+                [ "7", "EA+X < DATA",       "WRITE",    "Write modified data" ]
+            ],
+            "notes": [
+                "upper byte (EAH) may be invalid at this time (if page boundary was crossed) [addition occurs on the lower byte (EAL) only]"
+            ]
+        },
+        "abxyw": {
+            "instructions": [ "AHX", "SHY", "SHX", "STA", "TAS" ],
+            "cycles": [
+                [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+                [ "2", "PC++",              "EAL",      "Fetch EAL; Increment PC" ],
+                [ "3", "PC++",              "EAH",      "Fetch EAH; Increment PC" ],
+                [ "4", "EA+I*",             "DATA",     "Fetch data; Fix EAH" ],
+                [ "5", "EA+I < REGISTER",   "WRITE",    "Write register" ]
+            ],
+            "notes": [
+                "upper byte (EAH) may be invalid at this time (if page boundary was crossed) [addition occurs on the lower byte (EAL) only]"
+            ]
+        },
+
+
+
+        "zpgr": {
+            "instructions": [ "ADC", "AND", "BIT", "CMP", "CPX", "CPY", "EOR", "LAX", "LDA", "LDX", "LDY", "NOP", "ORA", "SBC" ],
+            "cycles": [
+                [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+                [ "2", "PC++",              "OPCODE",   "Fetch EAL; Increment PC" ],
+                [ "3", "PC++",              "OPCODE",   "Fetch data" ],
+                [ "4", "PC++",              "OPCODE",   "Execute; Fetch next" ]
+            ],
+            "notes": []
+        },
+        "zpgm": {
+            "instructions": [ "ASL", "DCP", "DEC", "INC", "ISC", "LSR", "RLA", "ROL", "ROR", "RRA", "SLO", "SRE" ],
+            "cycles": [
+                [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+                [ "2", "PC++",              "EAL",      "Fetch EAL; Increment PC" ],
+                [ "3", "EA",                "DATA",     "Fetch data" ],
+                [ "4", "EA < DATA",         "WRITE",    "Write data; Execute" ],
+                [ "5", "EA < DATA",         "WRITE",    "Write modified data" ]
+            ],
+            "notes": []
+        },
+        "zpgw": {
+            "instructions": [ "SAX", "STA", "STX", "STY" ],
+            "cycles": [
+                [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+                [ "2", "PC++",              "EAL",      "Fetch EAL; Increment PC" ],
+                [ "3", "EA < REGISTER",     "WRITE",    "Write register" ]
+            ],
+            "notes": []
+        },
+
+
+
+        "zpxyr": {
+            "instructions": [ "ADC", "AND", "CMP", "EOR", "LAX", "LDA", "LDX", "LDY", "NOP", "ORA", "SBC" ],
+            "cycles": [
+                [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+                [ "2", "PC++",              "EAL",      "Fetch EAL; Increment PC" ],
+                [ "3", "EA",                "DATA",     "Fetch data" ],
+                [ "4", "EA+I*",             "DATA",     "Fetch data; Execute" ]
+            ],
+            "notes": [
+                "addition occurs on the lower byte (EAL) only; upper byte (EAH) is always $00 for this operation"
+            ]
+        },
+        "zpxym": {
+            "instructions": [ "ASL", "DCP", "DEC", "INC", "ISC", "LSR", "RLA", "ROL", "ROR", "RRA", "SLO", "SRE" ],
+            "cycles": [
+                [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+                [ "2", "PC++",              "EAL",      "Fetch EAL; Increment PC" ],
+                [ "3", "EA",                "DATA",     "Fetch data" ],
+                [ "4", "EA+X*",             "DATA",     "Fetch data" ],
+                [ "5", "EA+X* < DATA",      "wRITE",    "Write data; Execute" ],
+                [ "6", "EA+X* < DATA",      "wRITE",    "Write modified data" ]
+            ],
+            "notes": [
+                "addition occurs on the lower byte (EAL) only; upper byte (EAH) is always $00 for this operation"
+            ]
+        },
+        "zpxyw": {
+            "instructions": [ "SAX", "STA", "STX", "STY" ],
+            "cycles": [
+                [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+                [ "2", "PC++",              "EAL",      "Fetch opcode; Increment PC" ],
+                [ "3", "EA",                "DATA",     "Fetch opcode; Increment PC" ],
+                [ "4", "EA+I* < REGISTER",  "WRITE",    "Write register" ]
+            ],
+            "notes": [
+                "addition occurs on the lower byte (EAL) only; upper byte (EAH) is always $00 for this operation"
+            ]
+        },
+
+
+
+        "izxr": {
+            "instructions": [ "ADC", "AND", "CMP", "EOR", "LAX", "LDA", "ORA", "SBC" ],
+            "cycles": [
+                [ "1",	"PC++",	            "OPCODE",	"Fetch opcode; Increment PC" ],
+                [ "2",	"PC++",	            "BAL",	    "Fetch BAL; Increment PC" ],
+                [ "3",	"BA",	            "DATA",	    "Fetch data" ],
+                [ "4",	"BA+X*",	        "EAL",	    "Fetch EAL" ],
+                [ "5",	"BA+X+1*",	        "EAH",	    "Fetch EAH" ],
+                [ "6",	"EA",	            "DATA",	    "Fetch data" ],
+                [ "0",	"PC++",	            "OPCODE",	"Execute; Fetch next" ]
+            ],
+            "notes": [
+                "addition occurs on the lower byte (BAL) only; upper byte (BAH) is always $00 for this operation"
+            ]
+        },
+        "izxm": {
+            "instructions": [ "DCP", "ISC", "RLA", "RRA", "SLO", "SRE" ],
+            "cycles": [
+                [ "1",	"PC++",	            "OPCODE",	"Fetch opcode; Increment PC" ],
+                [ "2",	"PC++",	            "BAL",	    "Fetch BAL; Increment PC" ],
+                [ "3",	"BA",	            "DATA",	    "Fetch data" ],
+                [ "4",	"BA+X*",	        "EAL",	    "Fetch EAL" ],
+                [ "5",	"BA+X+1*",	        "EAH",	    "Fetch EAH" ],
+                [ "6",	"EA",	            "DATA",	    "Fetch data" ],
+                [ "7",  "EA < DATA",        "DATA",     "Write data; Execute" ],
+                [ "8",  "EA < DATA",        "DATA",     "Write modified data" ]
+            ],
+            "notes": [
+                "addition occurs on the lower byte (BAL) only; upper byte (BAH) is always $00 for this operation"
+            ]
+        },
+        "izxw": {
+            "instructions": [ "SAX", "STA" ],
+            "cycles": [
+                [ "1",	"PC++",	            "OPCODE",	"Fetch opcode; Increment PC" ],
+                [ "2",	"PC++",	            "BAL",	    "Fetch BAL; Increment PC" ],
+                [ "3",	"BA",	            "DATA",	    "Fetch data" ],
+                [ "4",	"BA+X*",	        "EAL",	    "Fetch EAL" ],
+                [ "5",	"BA+X+1*",	        "EAH",	    "Fetch EAH" ],
+                [ "6",	"EA",	            "DATA",	    "Fetch data" ],
+                [ "7",  "EA < REGISTER",    "DATA",     "Write register" ]
+            ],
+            "notes": [
+                "addition occurs on the lower byte (BAL) only; upper byte (BAH) is always $00 for this operation"
+            ]
+        },
+
+
+
+        "izyr": {
+            "instructions": [ "ADC", "AND", "CMP", "EOR", "LAX", "LDA", "ORA", "SBC" ],
+            "cycles": [
+                [ "1", "PC++",	            "OPCODE",	"Fetch opcode; Increment PC" ],
+                [ "2", "PC++",	            "BAL",	    "Fetch BAL; Increment PC" ],
+                [ "3", "BA",	            "EAL",	    "Fetch EAL" ],
+                [ "4", "BA+1*",	            "EAH",	    "Fetch EAH" ],
+                [ "5", "EA+Y**",	        "DATA",	    "Fetch data" ],
+                [ "6***", "EA+Y",	        "DATA",	    "Fetch data" ],
+                [ "0", "PC++",	            "OPCODE",	"Execute; Fetch next" ]
+            ],
+            "notes": [
+                "addition occurs on the lower byte (BAL) only; upper byte (BAH) is always $00 for this operation",
+                "upper byte (EAH) may be invalid at his time (if page boundary was crossed) [addition occurs on the lower byte (EAL) only]",
+                "only executed if page boundary was crossed; skipped otherwise"
+            ]
+        },
+        "izym": {
+            "instructions": [ "DCP", "ISC", "RLA", "RRA", "SLO", "SRE" ],
+            "cycles": [
+                [ "1", "PC++",	            "OPCODE",	"Fetch opcode; Increment PC" ],
+                [ "2", "PC++",	            "BAL",	    "Fetch BAL; Increment PC" ],
+                [ "3", "BA",	            "EAL",	    "Fetch EAL" ],
+                [ "4", "BA+1*",	            "EAH",	    "Fetch EAH" ],
+                [ "5", "EA+Y**",	        "DATA",	    "Fetch data" ],
+                [ "6", "EA+Y",	            "DATA",	    "Fetch data" ],
+                [ "7", "EA < DATA",         "DATA",     "Write data; Execute" ],
+                [ "8", "EA < DATA",         "DATA",     "Write modified data" ]
+            ],
+            "notes": [
+                "addition occurs on the lower byte (BAL) only; upper byte (BAH) is always $00 for this operation",
+                "upper byte (EAH) may be invalid at his time (if page boundary was crossed) [addition occurs on the lower byte (EAL) only]"
+            ]
+        },
+        "izyw": {
+            "instructions": [ "AHX", "STA" ],
+            "cycles": [
+                [ "1", "PC++",	            "OPCODE",	"Fetch opcode; Increment PC" ],
+                [ "2", "PC++",	            "BAL",	    "Fetch BAL; Increment PC" ],
+                [ "3", "BA",	            "EAL",	    "Fetch EAL" ],
+                [ "4", "BA+1*",	            "EAH",	    "Fetch EAH" ],
+                [ "5", "EA+Y**",	        "DATA",	    "Fetch data" ],
+                [ "6", "EA+Y < REGISTER",   "DATA",	    "Write register" ]
+            ],
+            "notes": [
+                "addition occurs on the lower byte (BAL) only; upper byte (BAH) is always $00 for this operation",
+                "upper byte (EAH) may be invalid at his time (if page boundary was crossed) [addition occurs on the lower byte (EAL) only]"
+            ]
+        }
+
+    },
+
+    "special": {
+
+        "BRK": [
+            [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+            [ "2", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+            [ "3", "S-- < PCH",         "WRITE",    "Write PCH; Decrement S" ],
+            [ "4", "S-- < PCL",         "WRITE",    "Write PCL; Decrement S" ],
+            [ "5", "S-- < P",           "WRITE",    "Write P; Decrement S" ],
+            [ "6", "$FFFE",             "PCL",      "Fetch PCL" ],
+            [ "7", "$FFFF",             "PCH",      "Fetch PCH" ]
+        ],
+
+        "RTI": [
+            [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+            [ "2", "PC",                "OPCODE",   "Fetch opcode" ],
+            [ "3", "S++",               "DATA",     "Fetch data; Increment S" ],
+            [ "4", "S++",               "P",        "Fetch P; Increment S" ],
+            [ "5", "S++",               "PCL",      "Fetch PCL; Increment S" ],
+            [ "6", "S",                 "PCH",      "Fetch PCH" ]
+        ],
+
+        "RTS": [
+            [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+            [ "2", "PC",                "OPCODE",   "Fetch opcode" ],
+            [ "3", "S++",               "DATA",     "Fetch data; Increment S" ],
+            [ "4", "S++",               "PCL",      "Fetch PCL; Increment S" ],
+            [ "5", "S",                 "PCH",      "Fetch PCH" ]
+        ],
+
+        "PHAP": [
+            [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+            [ "2", "PC",                "OPCODE",   "Fetch opcode" ],
+            [ "3", "S-- < REGISTER",    "WRITE",    "Write register; Decrement S" ]
+        ],
+
+        "PLAP": [
+            [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+            [ "2", "PC",                "OPCODE",   "Fetch opcode" ],
+            [ "3", "S++",               "DATA",     "Fetch data; Increment S" ],
+            [ "4", "S",                 "REGISTER", "Fetch register (into register)" ]
+        ],
+
+        "JSR": [
+            [ "1", "PC++",	            "OPCODE",   "Fetch opcode; Increment PC" ],
+            [ "2", "PC++",	            "EAL",      "Fetch EAL; Increment PC" ],
+            [ "3", "S",                 "DATA",     "Fetch data" ],
+            [ "4", "S-- < PCH",	        "WRITE",	"Write PCH; Decrement S" ],
+            [ "5", "S-- < PCL",	        "WRITE",	"Write PCL; Decrement S" ],
+            [ "6", "PC",	            "PCH",	    "Fetch PCH; Set PCL to EAL" ]
+        ],
+
+        "JMP": [
+            [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
+            [ "2", "PC++",              "EAL",      "Fetch EAL; Increment PC" ],
+            [ "3", "PC",                "PCH",      "Fetch PCH; Set PCL to EAL" ]
+        ]
+
+    }
+}

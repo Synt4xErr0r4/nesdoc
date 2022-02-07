@@ -1,0 +1,72 @@
+.matrix-entry a {
+    text-decoration: underline dashed;
+    color: black !important;
+}
+
+.matrix-stability {
+    color: red;
+    font-weight: bolder;
+}
+
+.matrix-entry .matrix-stability {
+    float: right;
+}
+
+.matrix-mode {
+    margin-left: 5px;
+}
+
+.matrix-bytes {
+    float: right;
+}
+
+.matrix-illegal {
+    font-weight: bold;
+}
+
+.matrix-type-generic {
+    background-color: rgba(128, 128, 128, 0.15) !important;
+}
+.matrix-type-read {
+    background-color: rgba(255, 0, 0, 0.15) !important;
+}
+.matrix-type-rmw {
+    background-color: rgba(0, 0, 255, 0.15) !important;
+}
+.matrix-type-write {
+    background-color: rgba(0, 255, 0, 0.15) !important;
+}
+
+.matrix-mode-imm {
+    color: purple;
+}
+.matrix-mode-ind {
+    color: green;
+}
+.matrix-mode-rel {
+    color: yellow;
+}
+.matrix-mode-abs {
+    color: blue;
+}
+.matrix-mode-abx {
+    color: cornflowerblue;
+}
+.matrix-mode-aby {
+    color: darkblue;
+}
+.matrix-mode-zpg {
+    color: coral;
+}
+.matrix-mode-zpx {
+    color: orange;
+}
+.matrix-mode-zpy {
+    color: orangered;
+}
+.matrix-mode-izx {
+    color: lime;
+}
+.matrix-mode-izy {
+    color: darkgreen;
+}

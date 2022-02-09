@@ -3,8 +3,8 @@ hex,mnemonic,addrmode,cycles,operation,flags,stability
 01,ORA,izxr,6,"A=A|#",*-----*-,
 02,KIL,imm,2,crash,--------,crash
 03,SLO,izxm,8,"#=#<<1; A=A|#",*-----**,stable
-04,NOP,zpgr,4,"do nothing",--------,stable
-05,ORA,zpgr,4,"A=A|#",*-----*-,
+04,NOP,zpgr,3,"do nothing",--------,stable
+05,ORA,zpgr,3,"A=A|#",*-----*-,
 06,ASL,zpgm,5,"#=#<<1",*-----**,
 07,SLO,zpgm,5,"#=#<<1; A=A|#",*-----**,stable
 08,PHP,imp,3,"[S--]=P",--------,
@@ -35,8 +35,8 @@ hex,mnemonic,addrmode,cycles,operation,flags,stability
 21,AND,izxr,6,"A=A&#",*-----*-,
 22,KIL,imm,2,crash,--------,crash
 23,RLA,izxm,8,"#=#<<1+C; A=A&#",*-----**,stable
-24,BIT,zpgr,4,"N=b7; V=b6; Z=A&#",**----*-,
-25,AND,zpgr,4,"A=A&#",*-----*-,
+24,BIT,zpgr,3,"N=b7; V=b6; Z=A&#",**----*-,
+25,AND,zpgr,3,"A=A&#",*-----*-,
 26,ROL,zpgm,5,"#=#<<1+C",*-----**,
 27,RLA,zpgm,5,"#=#<<1+C; A=A&#",*-----**,stable
 28,PLP,imp,4,"P=[++S]",**--****,
@@ -67,8 +67,8 @@ hex,mnemonic,addrmode,cycles,operation,flags,stability
 41,EOR,izxr,6,"A=A^#",*-----*-,
 42,KIL,imm,2,crash,--------,crash
 43,SRE,izxm,8,"#=#>>1; A=A^#",*-----**,stable
-44,NOP,zpgr,4,"do nothing",--------,stable
-45,EOR,zpgr,4,"A=A^#",*-----*-,
+44,NOP,zpgr,3,"do nothing",--------,stable
+45,EOR,zpgr,3,"A=A^#",*-----*-,
 46,LSR,zpgm,5,"#=#>>1",*-----**,
 47,SRE,zpgm,5,"#=#>>1; A=A^#",*-----**,stable
 48,PHA,imp,3,"[S--]=A",*-----*-,
@@ -99,8 +99,8 @@ hex,mnemonic,addrmode,cycles,operation,flags,stability
 61,ADC,izxr,6,"A=A+#",**----**,
 62,KIL,imm,2,crash,--------,crash
 63,RRA,izxm,8,"#=#>>1+(C<<7); A=A+#",**----**,stable
-64,NOP,zpgr,4,"do nothing",--------,stable
-65,ADC,zpgr,4,"A=A+#",**----**,
+64,NOP,zpgr,3,"do nothing",--------,stable
+65,ADC,zpgr,3,"A=A+#",**----**,
 66,ROR,zpgm,5,"#=#>>1+(C<<7)",*-----**,
 67,RRA,zpgm,5,"#=#>>1+(C<<7); A=A+#",**----**,stable
 68,PLA,imp,4,"A=[++S]",--------,
@@ -163,10 +163,10 @@ A0,LDY,imm,2,"Y=#",*-----*-,
 A1,LDA,izxr,6,"A=#",*-----*-,
 A2,LDX,imm,2,"X=#",*-----*-,
 A3,LAX,izxr,6,"A,X=#",*-----*-,stable
-A4,LDY,zpgr,4,"Y=#",*-----*-,
-A5,LDA,zpgr,4,"A=#",*-----*-,
-A6,LDX,zpgr,4,"X=#",*-----*-,
-A7,LAX,zpgr,4,"A,X=#",*-----*-,stable
+A4,LDY,zpgr,3,"Y=#",*-----*-,
+A5,LDA,zpgr,3,"A=#",*-----*-,
+A6,LDX,zpgr,3,"X=#",*-----*-,
+A7,LAX,zpgr,3,"A,X=#",*-----*-,stable
 A8,TAY,imp,2,"Y=A",*-----*-,
 A9,LDA,imm,2,"A=#",*-----*-,
 AA,TAX,imp,2,"X=A",*-----*-,
@@ -195,8 +195,8 @@ C0,CPY,imm,2,"Y-#",--------,
 C1,CMP,izxr,6,"A-#",--------,
 C2,NOP,imm,2,"do nothing",--------,stable
 C3,DCP,izxm,8,"#=#-1; A-#",*-----**,stable
-C4,CPY,zpgr,4,"Y-#",--------,
-C5,CMP,zpgr,4,"A-#",--------,
+C4,CPY,zpgr,3,"Y-#",--------,
+C5,CMP,zpgr,3,"A-#",--------,
 C6,DEC,zpgm,5,"#=#-1",*-----*-,
 C7,DCP,zpgm,5,"#=#-1; A-#",*-----**,stable
 C8,INY,imp,2,"Y=Y+1",*-----*-,
@@ -227,8 +227,8 @@ E0,CPX,imm,2,"X-#",--------,
 E1,SBC,izxr,6,"A=A-#",**----**,
 E2,NOP,imm,2,"do nothing",--------,stable
 E3,ISC,izxm,8,"#=#+1; A-#",**----**,stable
-E4,CPX,zpgr,4,"X-#",--------,
-E5,SBC,zpgr,4,"A=A-#",**----**,
+E4,CPX,zpgr,3,"X-#",--------,
+E5,SBC,zpgr,3,"A=A-#",**----**,
 E6,INC,zpgm,5,"#=#+1",*-----*-,
 E7,ISC,zpgm,5,"#=#+1; A-#",**----**,stable
 E8,INX,imp,2,"X=X+1",*-----*-,

@@ -156,8 +156,8 @@
             "cycles": [
                 [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
                 [ "2", "PC++",              "OPCODE",   "Fetch EAL; Increment PC" ],
-                [ "3", "PC++",              "OPCODE",   "Fetch data" ],
-                [ "4", "PC++",              "OPCODE",   "Execute; Fetch next" ]
+                [ "3", "EA",                "DATA",     "Fetch data" ],
+                [ "0", "PC++",              "OPCODE",   "Execute; Fetch next" ]
             ],
             "notes": []
         },

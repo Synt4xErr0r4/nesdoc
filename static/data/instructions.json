@@ -53,7 +53,7 @@
             "hex": "04",
             "mnemonic": "NOP",
             "addrmode": "zpgr",
-            "cycles": 4,
+            "cycles": 3,
             "operation": "do nothing",
             "flags": "--------",
             "stability": "stable"
@@ -62,7 +62,7 @@
             "hex": "05",
             "mnemonic": "ORA",
             "addrmode": "zpgr",
-            "cycles": 4,
+            "cycles": 3,
             "operation": "A=A|#",
             "flags": "*-----*-",
             "stability": ""
@@ -341,7 +341,7 @@
             "hex": 24,
             "mnemonic": "BIT",
             "addrmode": "zpgr",
-            "cycles": 4,
+            "cycles": 3,
             "operation": "N=b7; V=b6; Z=A&#",
             "flags": "**----*-",
             "stability": ""
@@ -350,7 +350,7 @@
             "hex": 25,
             "mnemonic": "AND",
             "addrmode": "zpgr",
-            "cycles": 4,
+            "cycles": 3,
             "operation": "A=A&#",
             "flags": "*-----*-",
             "stability": ""
@@ -629,7 +629,7 @@
             "hex": 44,
             "mnemonic": "NOP",
             "addrmode": "zpgr",
-            "cycles": 4,
+            "cycles": 3,
             "operation": "do nothing",
             "flags": "--------",
             "stability": "stable"
@@ -638,7 +638,7 @@
             "hex": 45,
             "mnemonic": "EOR",
             "addrmode": "zpgr",
-            "cycles": 4,
+            "cycles": 3,
             "operation": "A=A^#",
             "flags": "*-----*-",
             "stability": ""
@@ -917,7 +917,7 @@
             "hex": 64,
             "mnemonic": "NOP",
             "addrmode": "zpgr",
-            "cycles": 4,
+            "cycles": 3,
             "operation": "do nothing",
             "flags": "--------",
             "stability": "stable"
@@ -926,7 +926,7 @@
             "hex": 65,
             "mnemonic": "ADC",
             "addrmode": "zpgr",
-            "cycles": 4,
+            "cycles": 3,
             "operation": "A=A+#",
             "flags": "**----**",
             "stability": ""
@@ -1493,7 +1493,7 @@
             "hex": "A4",
             "mnemonic": "LDY",
             "addrmode": "zpgr",
-            "cycles": 4,
+            "cycles": 3,
             "operation": "Y=#",
             "flags": "*-----*-",
             "stability": ""
@@ -1502,7 +1502,7 @@
             "hex": "A5",
             "mnemonic": "LDA",
             "addrmode": "zpgr",
-            "cycles": 4,
+            "cycles": 3,
             "operation": "A=#",
             "flags": "*-----*-",
             "stability": ""
@@ -1511,7 +1511,7 @@
             "hex": "A6",
             "mnemonic": "LDX",
             "addrmode": "zpgr",
-            "cycles": 4,
+            "cycles": 3,
             "operation": "X=#",
             "flags": "*-----*-",
             "stability": ""
@@ -1520,7 +1520,7 @@
             "hex": "A7",
             "mnemonic": "LAX",
             "addrmode": "zpgr",
-            "cycles": 4,
+            "cycles": 3,
             "operation": "A,X=#",
             "flags": "*-----*-",
             "stability": "stable"
@@ -1781,7 +1781,7 @@
             "hex": "C4",
             "mnemonic": "CPY",
             "addrmode": "zpgr",
-            "cycles": 4,
+            "cycles": 3,
             "operation": "Y-#",
             "flags": "--------",
             "stability": ""
@@ -1790,7 +1790,7 @@
             "hex": "C5",
             "mnemonic": "CMP",
             "addrmode": "zpgr",
-            "cycles": 4,
+            "cycles": 3,
             "operation": "A-#",
             "flags": "--------",
             "stability": ""
@@ -2069,7 +2069,7 @@
             "hex": "E4",
             "mnemonic": "CPX",
             "addrmode": "zpgr",
-            "cycles": 4,
+            "cycles": 3,
             "operation": "X-#",
             "flags": "--------",
             "stability": ""
@@ -2078,7 +2078,7 @@
             "hex": "E5",
             "mnemonic": "SBC",
             "addrmode": "zpgr",
-            "cycles": 4,
+            "cycles": 3,
             "operation": "A=A-#",
             "flags": "**----**",
             "stability": ""

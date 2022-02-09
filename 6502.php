@@ -481,7 +481,7 @@ require_once 'private/header.php';
         <i>Instructions:</i>
         <span id="addrmod-instr-abxym"></span><br>
 
-        <i>Note</i>: This mode does not exist for <i>ABY</i>
+        <i>Note</i>: This mode does not exist for <i>ABY</i> (for official opcodes)
 
         <table class="table" id="addrmod-table-abxym">
             <!-- populated by JavaScript -->
@@ -601,7 +601,7 @@ require_once 'private/header.php';
         <i>Instructions:</i>
         <span id="addrmod-instr-zpxym"></span><br>
 
-        <i>Note</i>: This mode does not exist for <i>ABY</i>
+        <i>Note</i>: This mode does not exist for <i>ZPY</i> (for official opcodes)
 
         <table class="table" id="addrmod-table-zpxym">
             <!-- populated by JavaScript -->

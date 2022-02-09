@@ -232,6 +232,10 @@ require_once 'private/header.php';
                 <li>
                     <b>REGISTER--</b>: first use the value of the <b>REGISTER</b>, then decrement it afterwards (post-decrement)
                 </li>
+                <li>
+                    <b>DESTINATION < SOURCE</b>: write <b>SOURCE</b> into memory at the specified <b>DESTINATION</b>
+                    (in combination with <b>WRITE</b> bus only)
+                </li>
             </ul>
         </li>
         <li>

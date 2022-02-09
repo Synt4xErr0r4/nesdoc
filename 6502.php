@@ -976,7 +976,7 @@ Quirks with other operations:
     </li>
 
     <li>
-        The various <a href="#NOP-unoff">NOPs</a> all fetch the data according to their address mode, but have no effect otherwise.<br>
+        The various <a href="#NOP-unoff">NOPs</a> all fetch the data according to their addressing mode, but have no effect otherwise.<br>
     </li>
 
     <li>

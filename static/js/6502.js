@@ -290,13 +290,6 @@ function loadInstrTable() {
 }
 
 $(() => {
-    
-    let matrices = {
-        normal:  $('#matrix-table-normal'),
-        grouped: $('#matrix-table-grouped'),
-        pattern: $('#matrix-table-pattern')
-    };
-
     loadAddrModes();
     loadInstrTable();
 })

@@ -249,8 +249,8 @@
                 [ "4",	"BA+X*",	        "EAL",	    "Fetch EAL" ],
                 [ "5",	"BA+X+1*",	        "EAH",	    "Fetch EAH" ],
                 [ "6",	"EA",	            "DATA",	    "Fetch data" ],
-                [ "7",  "EA < DATA",        "DATA",     "Write data; Execute" ],
-                [ "8",  "EA < DATA",        "DATA",     "Write modified data" ]
+                [ "7",  "EA < DATA",        "WRITE",    "Write data; Execute" ],
+                [ "8",  "EA < DATA",        "WRITE",    "Write modified data" ]
             ],
             "notes": [
                 "addition occurs on the lower byte (BAL) only; upper byte (BAH) is always $00 for this operation"
@@ -265,7 +265,7 @@
                 [ "4",	"BA+X*",	        "EAL",	    "Fetch EAL" ],
                 [ "5",	"BA+X+1*",	        "EAH",	    "Fetch EAH" ],
                 [ "6",	"EA",	            "DATA",	    "Fetch data" ],
-                [ "7",  "EA < REGISTER",    "DATA",     "Write register" ]
+                [ "7",  "EA < REGISTER",    "WRITE",    "Write register" ]
             ],
             "notes": [
                 "addition occurs on the lower byte (BAL) only; upper byte (BAH) is always $00 for this operation"
@@ -300,8 +300,8 @@
                 [ "4", "BA+1*",	            "EAH",	    "Fetch EAH" ],
                 [ "5", "EA+Y**",	        "DATA",	    "Fetch data" ],
                 [ "6", "EA+Y",	            "DATA",	    "Fetch data" ],
-                [ "7", "EA < DATA",         "DATA",     "Write data; Execute" ],
-                [ "8", "EA < DATA",         "DATA",     "Write modified data" ]
+                [ "7", "EA < DATA",         "WRITE",    "Write data; Execute" ],
+                [ "8", "EA < DATA",         "WRITE",    "Write modified data" ]
             ],
             "notes": [
                 "addition occurs on the lower byte (BAL) only; upper byte (BAH) is always $00 for this operation",
@@ -316,7 +316,7 @@
                 [ "3", "BA",	            "EAL",	    "Fetch EAL" ],
                 [ "4", "BA+1*",	            "EAH",	    "Fetch EAH" ],
                 [ "5", "EA+Y**",	        "DATA",	    "Fetch data" ],
-                [ "6", "EA+Y < REGISTER",   "DATA",	    "Write register" ]
+                [ "6", "EA+Y < REGISTER",   "WRITE",    "Write register" ]
             ],
             "notes": [
                 "addition occurs on the lower byte (BAL) only; upper byte (BAH) is always $00 for this operation",

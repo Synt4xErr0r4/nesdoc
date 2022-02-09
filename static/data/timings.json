@@ -126,10 +126,10 @@
                 [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
                 [ "2", "PC++",              "EAL",      "Fetch EAL; Increment PC" ],
                 [ "3", "PC++",              "EAH",      "Fetch EAH; Increment PC" ],
-                [ "4", "EA+X*",             "DATA",     "Fetch data; Fix EAH" ],
-                [ "5", "EA+X",              "DATA",     "Fetch data" ],
-                [ "6", "EA+X < DATA",       "WRITE",    "Write data; Execute" ],
-                [ "7", "EA+X < DATA",       "WRITE",    "Write modified data" ]
+                [ "4", "EA+I*",             "DATA",     "Fetch data; Fix EAH" ],
+                [ "5", "EA+I",              "DATA",     "Fetch data" ],
+                [ "6", "EA+I < DATA",       "WRITE",    "Write data; Execute" ],
+                [ "7", "EA+I < DATA",       "WRITE",    "Write modified data" ]
             ],
             "notes": [
                 "upper byte (EAH) may be invalid at this time (if page boundary was crossed) [addition occurs on the lower byte (EAL) only]"
@@ -202,9 +202,9 @@
                 [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
                 [ "2", "PC++",              "EAL",      "Fetch EAL; Increment PC" ],
                 [ "3", "EA",                "DATA",     "Fetch data" ],
-                [ "4", "EA+X*",             "DATA",     "Fetch data" ],
-                [ "5", "EA+X* < DATA",      "wRITE",    "Write data; Execute" ],
-                [ "6", "EA+X* < DATA",      "wRITE",    "Write modified data" ]
+                [ "4", "EA+I*",             "DATA",     "Fetch data" ],
+                [ "5", "EA+I* < DATA",      "WRITE",    "Write data; Execute" ],
+                [ "6", "EA+I* < DATA",      "WRITE",    "Write modified data" ]
             ],
             "notes": [
                 "addition occurs on the lower byte (EAL) only; upper byte (EAH) is always $00 for this operation"

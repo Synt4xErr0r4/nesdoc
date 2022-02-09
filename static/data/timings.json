@@ -57,9 +57,9 @@
             "cycles": [
                 [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
                 [ "2", "PC++",              "OFFSET",   "Fetch offset; Increment PC" ],
-                [ "3/0", "PC++/PCL+OFF",    "OPCODE",   "Flag check: Increment PC on failure", "add offset to PC otherwise" ],
-                [ "4/0*", "PC/PC++**",      "OPCODE",   "Fetch next; Fix PCH: if unchanged", "increment PC" ],
-                [ "0**", "PC++",            "OPCODE",   "Fetch next"]
+                [ "3/0", "PC++/PCL+OFF",    "OPCODE",   "Flag check: Increment PC on failure, add offset to PC otherwise" ],
+                [ "4/0*", "PC/PC++**",      "OPCODE",   "Fetch next; Fix PCH: if unchanged, increment PC" ],
+                [ "0***", "PC++",           "OPCODE",   "Fetch next"]
             ],
             "notes": [
                 "only executed if flag check succeeded; otherwise T3 is the first cycle of the next instruction",
@@ -97,8 +97,8 @@
             "instructions": [ "SAX", "STA", "STX", "STY" ],
             "cycles": [
                 [ "1", "PC++",              "OPCODE",   "Fetch opcode; Increment PC" ],
-                [ "2", "PC++",              "EAL",      "Fetch EAL", "Increment PC" ],
-                [ "3", "PC++",              "EAH",      "Fetch EAH", "Increment PC" ],
+                [ "2", "PC++",              "EAL",      "Fetch EAL; Increment PC" ],
+                [ "3", "PC++",              "EAH",      "Fetch EAH; Increment PC" ],
                 [ "4", "EA < REGISTER",     "WRITE",    "Write register" ]
             ],
             "notes": []
